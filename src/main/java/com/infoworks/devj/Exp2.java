@@ -16,30 +16,29 @@ public class Exp2 {
 
   Map<String, Integer> MAP_PREFIX = new HashMap();
 
-  Map<String, String> MAP_SUFFIX= new HashMap();
+  Map<String, Integer> MAP_SUFFIX= new HashMap();
 
 
-  private void generateSuffixeToPrefixMapping(String str) {
+  private void generateAllSuffixes(String str) {
     if(str.length() <= 2) {
-      MAP_SUFFIX.put(str, "");
+      MAP_SUFFIX.put(str, 0);
       return;
     }
 
     for(int i=str.length()-2; i>=0; i--) {
-      String subStrSuffix = str.substring(str.length()-1, i);
-      String subStrPrefix = str.substring(0, i+1);
-
-      MAP_SUFFIX.put(subStrSuffix, subStrPrefix);  // (suffix -> prefix)
+      String suffix = str.substring(str.length()-1, i);
+      MAP_SUFFIX.put(suffix, 0);  // (suffix -> 0)
     }
   }
 
   private void generateAndMatchPrefixes(String str) {
-    List<String> suffixFound = new ArrayList();
+    List<String> prefixMatched = new ArrayList();
 
     for(int i=1; i<str.length(); i++) {
-      String subStr = str.substring(0, i);
-      if() {
-
+      String prefix = str.substring(0, i);
+      if(MAP_SUFFIX.containsKey(prefix)) {
+        prefixMatched.add(prefix);
+        MAP_SUFFIX.put(prefix, 1);  //suffix matched, mark as 1
       }
     }
   }
@@ -48,12 +47,12 @@ public class Exp2 {
     String res = "";
 
     for(int i=0; i<arr.length; i++) {
-      generateSuffixeToPrefixMapping(arr[i]);  // (suffix -> prefix)
+      generateAllSuffixes(arr[i]);
     }
 
 
     for(int i=0; i<arr.length; i++) {
-      generateAndMatchPrefixes(arr[i]);  
+      generateAndMatchPrefixes(arr[i]);
     }
 
     return res;
