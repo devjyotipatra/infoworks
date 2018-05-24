@@ -16,12 +16,17 @@ public class Exp2 {
 
   Map<String, Integer> MAP_PREFIX = new HashMap();
 
-  Map<String, Integer> MAP_SUFFIX= new HashMap();
+  Map<String, String> MAP_SUFFIX= new HashMap();
 
 
   private void generateSuffixes(String str) {
-    for(int i=str.length()-1; i>=0; i--) {
-      String subStr = str.substring(0, )
+    if(str.length() <= 2) {
+      MAP_SUFFIX.put(str, "");
+      return;
+    }
+
+    for(int i=str.length()-2; i>=0; i--) {
+      String subStr = str.substring(str.length()-1, i)
       MAP_SUFFIX.put();
     }
   }
@@ -35,5 +40,11 @@ public class Exp2 {
 
       }
     }
+  }
+
+  public String getMinLengthString(String[] arr) {
+    String res = "";
+
+    return res;
   }
 }
